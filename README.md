@@ -126,6 +126,12 @@ nd.adjacent[1, 2] # neighbor to aft face in first dimension
 # may point to a leaf or a node, depending on its refinement level
 ```
 
+Get the leaf within which a point is inserted (or `nothing`, if not found):
+
+```
+sd = get_subdomain(pt, msh)
+```
+
 For further information, you can access the docstrings for each object and data type in Julia's help mode.
 
 ## Installation

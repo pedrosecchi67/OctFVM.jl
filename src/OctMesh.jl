@@ -137,6 +137,17 @@ function get_subdomain(pt::Vector{Float64}, node::AbstractOctNode, level::Int64)
 end
 
 """
+Obtain subdomain within which a point is inserted, using a recursive search reaching 
+any level of discretization
+
+* `pt`: vector of floats with position
+* `node`: `AbstractOctNode` from which to search
+
+* return: `nothing` if not found, `AbstractOctNode` for the subdomain if found
+"""
+get_subdomain(pt::Vector{Float64}, node::AbstractOctNode) = get_subdomain(pt, node, typemax(Int64))
+
+"""
 Set adjacent attribute in `AbstractOctNode`
 """
 function set_adjacent!(node::AbstractOctNode; recursive::Bool=false)
@@ -395,4 +406,4 @@ function set_indices!(msh::AbstractOctNode, oldvs::AbstractVector...)
 
 end
 
-export OctLeaf, OctNode, fracture!, merge_branch!, nleaves, set_indices!
+export OctLeaf, OctNode, fracture!, merge_branch!, nleaves, set_indices!, get_subdomain

@@ -51,6 +51,11 @@
 
     @assert isapprox(xs, [1.0, 2.0, 3.0, 4.0])
     @assert isapprox(ys, [4.0, 3.0, 2.0, 1.0])
+
+    pt=[rand(Float64), rand(Float64)]
+
+    sd=get_subdomain(pt, frc)
+    @assert isa(sd, OctLeaf)
     
     true
 end
