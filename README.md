@@ -59,19 +59,19 @@ To create vectors relating data to specific leaves:
 
 ```
 data = zeros(Float64, nleaves(msh))
-set_indexing!(msh)
+set_indices!(msh)
 ```
 
-`set_indexing!` ensures each leaf has a specific index to relate it to vectors storing data. It can also be used to reshape vectors accordingly when refining or coarsening a mesh:
+`set_indices!` ensures each leaf has a specific index to relate it to vectors storing data. It can also be used to reshape vectors accordingly when refining or coarsening a mesh:
 
 ```
 data2 = similar(data)
 
 fracture!(msh; inds = [2, 2])
-data, data2 = set_indexing!(msh, data, data2) # inherits data from fractured cells
+data, data2 = set_indices!(msh, data, data2) # inherits data from fractured cells
 
 merge_branch!(msh; inds = [1, 2])
-data, data2 = set_indexing!(msh, data, data2) # averages data between merged cells
+data, data2 = set_indices!(msh, data, data2) # averages data between merged cells
 ```
 
 ## Calculating Fluxes
