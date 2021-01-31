@@ -262,7 +262,15 @@ function fracture!(oct::AbstractOctNode; inds::Union{Nothing, Vector{Int64}}=not
     end
 
     if isnothing(inds)
-        return fracture(oct)
+        fr=fracture(oct)
+
+        for adj in fr.adjacent
+            if !isnothing(adj)
+                set_adjacent!(adj; recursive=true)
+            end
+        end
+
+        return fr
     end
 
     oct.subnodes[inds...]=fracture(oct.subnodes[inds...])
